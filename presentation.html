@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Historical baby name occurence finder</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Historical baby name occurence finder">
+  <meta name="author" content="M.K. McGregor">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/solarized_light.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Historical baby name occurence finder</h1>
+    <h2>A Shiny app</h2>
+    <p>M.K. McGregor<br/>Developing Data Products</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue quote dark" id="slide-1" style="background:;">
+  <article data-timings="">
+    <p><q> How common is your given name? Is your planned baby name too common?</q></p>
+
+<style>
+.dark q {
+  color: white;
+}
+</style>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>A new Shiny app</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We propose a new simple Shiny app to give this information.</p>
+
+<p>We make use of the US Social Security Administration database of baby names from 1880-2014</p>
+
+<ul>
+<li>Social security numbers (SSN) first issued in 1936, but only required for people with an income</li>
+<li>As of 1986, all children require a SSN at birth</li>
+<li>Data for males and females</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s take a look at the dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">head(babynames,3)
+</code></pre>
+
+<pre><code>  year sex name    n       prop
+1 1880   F Mary 7065 0.07238359
+2 1880   F Anna 2604 0.02667896
+3 1880   F Emma 2003 0.02052149
+</code></pre>
+
+<pre><code class="r">tail(babynames,3)
+</code></pre>
+
+<pre><code>        year sex    name n         prop
+1825431 2014   M Zymiere 5 2.463303e-06
+1825432 2014   M   Zyran 5 2.463303e-06
+1825433 2014   M   Zyrin 5 2.463303e-06
+</code></pre>
+
+<ul>
+<li>n: number of records with that name</li>
+<li>prop: proportion = n divided total number of applicants in that year</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>An Example: &quot;Gertrude&quot;</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">years &lt;- babynames[which(babynames$name == &quot;Gertrude&quot;), &quot;year&quot;]
+props &lt;- 100*babynames[which(babynames$name == &quot;Gertrude&quot;), &quot;prop&quot;]
+plot(years, props, xlab= &quot;Year&quot;, ylab = &quot;Percent of births (%)&quot;, type = &quot;l&quot;, lwd=3, col=&quot;blue&quot;)
+</code></pre>
+
+<p><img src="figure/plot-1.png" alt="plot of chunk plot"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='A new Shiny app'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Let&#39;s take a look at the dataset'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='An Example: &quot;Gertrude&quot;'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
